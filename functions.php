@@ -142,6 +142,13 @@ require get_template_directory() . '/inc/breadcrumbs.php';
 
 
 /**
+ * Pagination.
+ */
+require get_template_directory() . '/inc/pagination.php';
+
+
+
+/**
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
