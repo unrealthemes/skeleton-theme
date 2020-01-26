@@ -188,3 +188,16 @@ function ut_mime_type_without_application( $defailt_mime_type ) {
 
 	return $mime_type;
 }
+
+
+
+/**
+ * Remove feature image and comment for post type "page"
+ */
+function ut_cpt_support() {
+    
+    remove_post_type_support( 'page', 'thumbnail' );
+    remove_post_type_support( 'page', 'comments' );
+    remove_post_type_support( 'page', 'comments' );
+}
+add_action( 'admin_init', 'ut_cpt_support' );
