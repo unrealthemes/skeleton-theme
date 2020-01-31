@@ -128,6 +128,13 @@ add_filter( 'script_loader_tag', 'ut_add_async_attribute', 10, 2 );*/
 
 
 /**
+ * Disabling Gutenberg on certain templates.
+ */
+require get_template_directory() . '/inc/disable-editor.php';
+
+
+
+/**
  * Post type 'Product'.
  */
 require get_template_directory() . '/inc/post-types/product.php';
