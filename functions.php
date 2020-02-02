@@ -27,10 +27,35 @@ function ut_attach_theme_options() {
 	// require get_template_directory() . '/inc/custom-fields/taxonomy/category.php';
 }
 
-function ut_get_gmaps_api_key($current_key){
+
+
+/**
+ * Carbon Google Maps Api Key
+ */
+function ut_get_gmaps_api_key( $current_key ) {
     return 'AIzaSyDcFp4c3Myxm4bQkci-dmUQW3AzJPYIg20';
 }
 add_filter('carbon_fields_map_field_api_key', 'ut_get_gmaps_api_key');
+
+
+
+/**
+ * Carbon Options WPML Support
+ */
+function ut_get_i18n_suffix() {
+    $suffix = '';
+    if ( ! defined( 'ICL_LANGUAGE_CODE' ) ) {
+        return $suffix;
+    }
+    $suffix = '_' . ICL_LANGUAGE_CODE;
+    return $suffix;
+}
+
+function ut_get_i18n_theme_option( $option_name ) {
+    $suffix = ut_get_i18n_suffix();
+    return carbon_get_theme_option( $option_name . $suffix );
+}
+
 
 
 if ( ! function_exists( 'ut_setup' ) ) :
