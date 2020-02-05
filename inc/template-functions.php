@@ -201,3 +201,17 @@ function ut_cpt_support() {
     remove_post_type_support( 'page', 'comments' );
 }
 add_action( 'admin_init', 'ut_cpt_support' );
+
+
+
+/**
+ * Cancel the display of the selected term at the top in the checkbox list of terms
+ */
+function ut_set_checked_ontop_default( $args ) {
+	// change the default parameter to false
+	if( ! isset($args['checked_ontop']) )
+		$args['checked_ontop'] = false;
+
+	return $args;
+}
+add_filter( 'wp_terms_checklist_args', 'ut_set_checked_ontop_default', 10 );
