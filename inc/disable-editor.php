@@ -11,12 +11,6 @@ function ut_disable_editor( $id = false ) {
 
 	$excluded_templates = array(
 		'template-home.php',
-		'template-catalog.php',
-		'template-cart.php',
-		'template-about.php',
-		'template-dealers.php',
-		'template-colectors.php',
-		'template-contacts.php'
 	);
 
 	$excluded_ids = array(

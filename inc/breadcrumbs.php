@@ -13,11 +13,11 @@
 
 function ut_breadcrumbs( $sep = ' » ', $l10n = array(), $args = array() ){
 
-	$kb = new Ut_Breadcrumbs;
+	$kb = new UT_Breadcrumbs;
 	echo $kb->get_crumbs( $sep, $l10n, $args );
 }
 
-class Ut_Breadcrumbs {
+class UT_Breadcrumbs {
 
 	public $arg;
 

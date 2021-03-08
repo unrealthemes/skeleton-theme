@@ -1,8 +1,6 @@
 <?php
 /**
  * Functions which enhance the theme by hooking into WordPress
- *
- * @package unreal-themes
  */
 
 
@@ -10,18 +8,18 @@
 /**
  * Get permalink by template name
  */
+
 function ut_get_permalik_by_template( $template ) {
 
 	$result = '';
 
-	if ( !empty( $template ) ) {
-		$pages = get_pages( array(
+	if ( ! empty( $template ) ) {
+		$pages = get_pages( [
 		    'meta_key'   => '_wp_page_template',
 		    'meta_value' => $template
-		) );
+		] );
 		$template_id = $pages[0]->ID;
 		$page = get_post( $template_id );
-
 		$result = get_permalink( $page );
 	}
 	
@@ -33,15 +31,16 @@ function ut_get_permalik_by_template( $template ) {
 /**
  * Get permalink by template name
  */
+
 function ut_get_page_id_by_template( $template ) {
 
 	$result = '';
 
-	if ( !empty( $template ) ) {
-		$pages = get_pages( array(
+	if ( ! empty( $template ) ) {
+		$pages = get_pages( [
 		    'meta_key'   => '_wp_page_template',
 		    'meta_value' => $template
-		) );
+		] );
 		$result = $pages[0]->ID;
 	}
 	
@@ -53,14 +52,18 @@ function ut_get_page_id_by_template( $template ) {
 /**
  * Get name menu by location
  */
+
 function ut_get_title_menu_by_location( $location ) {
 
-    if( empty($location) ) return false;
-
+    if ( empty( $location ) ) {
+    	return false;
+	}
     $locations = get_nav_menu_locations();
-    if ( ! isset( $locations[$location] ) ) return false;
 
-    $menu_obj = get_term( $locations[$location], 'nav_menu' );
+    if ( ! isset( $locations[ $location ] ) ) {
+    	return false;
+	}
+    $menu_obj = get_term( $locations[ $location ], 'nav_menu' );
 
     return $menu_obj->name;
 }
@@ -70,6 +73,7 @@ function ut_get_title_menu_by_location( $location ) {
 /** 
  * Admin footer modification
  */   
+
 function ut_remove_footer_admin() {
 
     echo '<span id="footer-thankyou">Тема разработана <a href="https://unrealthemes.ru/" target="_blank"><img src="' . get_template_directory_uri() . '/img/unreal.png" width="130"/></a></span>';
@@ -81,35 +85,23 @@ add_filter('admin_footer_text', 'ut_remove_footer_admin');
 /**
  * SVG to upload mimes.
  */
+
 function ut_add_svg_to_upload_mimes( $upload_mimes ) {
 
     $upload_mimes['svg'] = 'image/svg+xml';
     $upload_mimes['svgz'] = 'image/svg+xml';
+
     return $upload_mimes;
 }
 add_filter( 'upload_mimes', 'ut_add_svg_to_upload_mimes', 10, 1 );
 
 
 
-/**
- * Hide editor on choose templates
- */
-// function ut_hide_editor() {
-// 	$template_file = $template_file = basename( get_page_template() );
-
-// 	if( $template_file == 'template-home.php' ){
-// 		remove_post_type_support('page', 'editor');
-// 	}
-// }
-// add_action( 'admin_head', 'ut_hide_editor' );
-
-
-
 /** 
  * Add options page ACF pro
  */ 
+
 // if( function_exists('acf_add_options_page') ) {
-	
 // 	acf_add_options_page();
 // }
 
@@ -118,6 +110,7 @@ add_filter( 'upload_mimes', 'ut_add_svg_to_upload_mimes', 10, 1 );
 /**
  * Style for repeater carbon fields
  */
+
 function ut_admin_style() {
 
   	echo '<style>
@@ -130,13 +123,14 @@ function ut_admin_style() {
 			}
 		  </style>';
 }
-add_action('admin_head', 'ut_admin_style'); 
+add_action( 'admin_head', 'ut_admin_style' ); 
 
 
 
 /**
  * Custom excerpt
  */
+
 // add_filter( 'excerpt_length', function() {
 // 	return 23;
 // } );
@@ -150,6 +144,7 @@ add_action('admin_head', 'ut_admin_style');
 /**
  *
  */
+
 function ut_format_size_units( $bytes ) {
 
     if ( $bytes >= 1073741824 ) {
@@ -174,6 +169,7 @@ function ut_format_size_units( $bytes ) {
 /**
  *	Remove prefix in default mime type ( application/pdf = pdf )
  */
+
 function ut_mime_type_without_application( $defailt_mime_type ) {
 
 	$mime_type = '';
@@ -194,23 +190,25 @@ function ut_mime_type_without_application( $defailt_mime_type ) {
 /**
  * Remove feature image and comment for post type "page"
  */
-function ut_cpt_support() {
-    
-    remove_post_type_support( 'page', 'thumbnail' );
-    remove_post_type_support( 'page', 'comments' );
-    remove_post_type_support( 'page', 'comments' );
-}
-add_action( 'admin_init', 'ut_cpt_support' );
+
+// function ut_cpt_support() {
+//     remove_post_type_support( 'page', 'thumbnail' );
+//     remove_post_type_support( 'page', 'comments' );
+//     remove_post_type_support( 'page', 'comments' );
+// }
+// add_action( 'admin_init', 'ut_cpt_support' );
 
 
 
 /**
  * Cancel the display of the selected term at the top in the checkbox list of terms
  */
+
 function ut_set_checked_ontop_default( $args ) {
 	// change the default parameter to false
-	if( ! isset($args['checked_ontop']) )
+	if ( ! isset( $args['checked_ontop'] ) ) {
 		$args['checked_ontop'] = false;
+	}
 
 	return $args;
 }
