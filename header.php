@@ -8,6 +8,8 @@
 
 <body <?php body_class(); ?>>
 
+	<?php echo carbon_get_theme_option('aga_script'); ?>
+
 	<?php
 		if ( has_nav_menu('menu_1') ) {
 			wp_nav_menu( [

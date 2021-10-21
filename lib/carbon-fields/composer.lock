@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0b08a226abdc29e169e5de5436ff3d2",
+    "content-hash": "d0bc13d9a9810e370c5ee64430b55020",
     "packages": [
         {
             "name": "htmlburger/carbon-field-icon",
@@ -60,6 +60,10 @@
                 "carbon-field-icon",
                 "wordpress"
             ],
+            "support": {
+                "issues": "https://github.com/htmlburger/carbon-field-icon/issues",
+                "source": "https://github.com/htmlburger/carbon-field-icon/tree/v3.1.0"
+            },
             "time": "2019-05-07T12:38:53+00:00"
         },
         {
@@ -115,20 +119,23 @@
                 "carbon-field-number",
                 "wordpress"
             ],
+            "support": {
+                "source": "https://github.com/htmlburger/carbon-field-number/tree/development"
+            },
             "time": "2018-12-21T12:45:35+00:00"
         },
         {
             "name": "htmlburger/carbon-fields",
-            "version": "v3.1.8",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/htmlburger/carbon-fields.git",
-                "reference": "61e85c528064f6fb0d831b372496974a907cdb27"
+                "reference": "dd5663e14c6db365323b688dbae1cfbeaf14bee7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/61e85c528064f6fb0d831b372496974a907cdb27",
-                "reference": "61e85c528064f6fb0d831b372496974a907cdb27",
+                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/dd5663e14c6db365323b688dbae1cfbeaf14bee7",
+                "reference": "dd5663e14c6db365323b688dbae1cfbeaf14bee7",
                 "shasum": ""
             },
             "require": {
@@ -248,20 +255,26 @@
             ],
             "description": "WordPress developer-friendly custom fields for post types, taxonomy terms, users, comments, widgets, options and more.",
             "homepage": "http://carbonfields.net/",
-            "time": "2019-11-19T08:23:34+00:00"
+            "support": {
+                "docs": "http://carbonfields.net/docs/",
+                "email": "wordpress@htmlburger.com",
+                "issues": "https://github.com/htmlburger/carbon-fields/issues",
+                "source": "https://github.com/htmlburger/carbon-fields"
+            },
+            "time": "2021-04-22T13:24:34+00:00"
         },
         {
             "name": "iamntz/carbon-fields-urlpicker",
-            "version": "1.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/iamntz/carbon-fields-urlpicker.git",
-                "reference": "d6b0b15af83cef19762613441717d00e7034b838"
+                "reference": "c8114eddd182ccd16e8cf031c7d317ee481c7d00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iamntz/carbon-fields-urlpicker/zipball/d6b0b15af83cef19762613441717d00e7034b838",
-                "reference": "d6b0b15af83cef19762613441717d00e7034b838",
+                "url": "https://api.github.com/repos/iamntz/carbon-fields-urlpicker/zipball/c8114eddd182ccd16e8cf031c7d317ee481c7d00",
+                "reference": "c8114eddd182ccd16e8cf031c7d317ee481c7d00",
                 "shasum": ""
             },
             "type": "library",
@@ -290,7 +303,11 @@
                 "carbon-fields-urlpicker",
                 "wordpress"
             ],
-            "time": "2018-08-15T15:38:22+00:00"
+            "support": {
+                "issues": "https://github.com/iamntz/carbon-fields-urlpicker/issues",
+                "source": "https://github.com/iamntz/carbon-fields-urlpicker/tree/v3"
+            },
+            "time": "2019-10-11T10:00:47+00:00"
         }
     ],
     "packages-dev": [],
@@ -300,5 +317,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }

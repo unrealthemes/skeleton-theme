@@ -4,7 +4,7 @@
  * Get instance of helper
  */
 function ut_help() {
-  return UT_Theme_Helper::getInstance();
+  return UT_Theme_Helper::get_instance();
 }
 
 /**
@@ -13,7 +13,8 @@ function ut_help() {
 class UT_Theme_Helper {
 
   private static $_instance = null;
-  public $product;
+
+  // public $product;
 
   private function __construct() {
 
@@ -23,7 +24,7 @@ class UT_Theme_Helper {
 
   }
 
-  static public function getInstance() {
+  static public function get_instance() {
 
   	if ( is_null( self::$_instance ) ) {
   	  self::$_instance = new self();
@@ -46,13 +47,18 @@ class UT_Theme_Helper {
 
   function load_classes() {
 
-  	$this->product = UT_Product::getInstance();
+  	// $this->product = UT_Product::get_instance();
   }
 
   /**
    * Register all needed hooks
    */
   public function register_hooks() {
+
+    // Carbon fields lib
+    add_action( 'after_setup_theme', [ $this, 'carbon_fields_load' ] );
+    add_action( 'carbon_fields_register_fields', [ $this, 'include_register_fields' ] );
+    add_filter( 'carbon_fields_map_field_api_key', [ $this, 'get_gmaps_api_key' ] );
 
   	add_action( 'wp_enqueue_scripts', [ $this, 'load_scripts_n_styles' ] );
   	add_action( 'after_setup_theme',  [ $this, 'register_menus' ] );
@@ -107,7 +113,7 @@ class UT_Theme_Helper {
 
   public function add_async_defer_attr( $tag, $handle, $src ) {
 
-    if( 'ut-googleapis' === $handle ){
+    if ( 'ut-googleapis' === $handle ) {
       return str_replace( ' src', ' async defer src', $tag );
     }
 
@@ -118,10 +124,50 @@ class UT_Theme_Helper {
 
   	include_once 'disable-editor.php';
   	include_once 'pagination.php';
-  	include_once 'walker-nav-menu.php';
+  	// include_once 'walker-nav-menu.php';
   	include_once 'template-functions.php';
-  	include_once 'woo-functions.php';
-  	include_once 'class-product.php';
+  	// include_once 'woo-functions.php';
+  	// include_once 'class-product.php';
+  }
+
+  public function carbon_fields_load() {
+
+    require get_template_directory() . '/lib/carbon-fields/vendor/autoload.php';
+    // require_once( '../lib/carbon-fields/vendor/autoload.php' );
+    \Carbon_Fields\Carbon_Fields::boot();
+  }
+  
+  public function include_register_fields() {
+
+    require get_template_directory() . '/inc/custom-fields/options.php';
+    // require get_template_directory() . '/inc/custom-fields/home.php';
+    // require get_template_directory() . '/inc/custom-fields/taxonomy/category.php';
+  }
+
+  public function get_gmaps_api_key( $current_key ) {
+
+    $key = carbon_get_theme_option('gmap_api_key');
+
+    return $key;
+  }
+  
+  public function get_i18n_suffix() {
+
+    $suffix = '';
+
+    if ( ! defined( 'ICL_LANGUAGE_CODE' ) ) {
+      return $suffix;
+    }
+    $suffix = '_' . ICL_LANGUAGE_CODE;
+
+    return $suffix;
+  }
+
+  public function get_i18n_theme_option( $option_name ) {
+
+    $suffix = $this->get_i18n_suffix();
+
+    return carbon_get_theme_option( $option_name . $suffix );
   }
 
 }
