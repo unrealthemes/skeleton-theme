@@ -86,10 +86,13 @@ add_filter('admin_footer_text', 'ut_remove_footer_admin');
  * Add options page ACF pro
  */ 
 
-// if( function_exists('acf_add_options_page') ) {
-// 	acf_add_options_page();
+// if ( function_exists('acf_add_options_page') ) {
+// 	acf_add_options_page([
+// 		'page_title'    => __('Настройки темы'),
+// 		'menu_title'    => __('Настройки темы'),
+// 		'menu_slug'     => 'acf-options',
+// 	]);
 // }
-
 
 
 /**
@@ -156,11 +159,11 @@ function ut_mime_type_without_application( $default_mime_type ) {
  * Remove feature image and comment for post type "page"
  */
 
-// function ut_cpt_support() {
-//     remove_post_type_support( 'page', 'thumbnail' );
-//     remove_post_type_support( 'page', 'comments' );
-//     remove_post_type_support( 'page', 'comments' );
-// }
+function ut_cpt_support() {
+    remove_post_type_support( 'page', 'thumbnail' );
+    remove_post_type_support( 'page', 'comments' );
+    remove_post_type_support( 'page', 'comments' );
+}
 // add_action( 'admin_init', 'ut_cpt_support' );
 
 
@@ -177,22 +180,22 @@ function ut_set_checked_ontop_default( $args ) {
 
 	return $args;
 }
-add_filter( 'wp_terms_checklist_args', 'ut_set_checked_ontop_default', 10 );
+// add_filter( 'wp_terms_checklist_args', 'ut_set_checked_ontop_default', 10 );
 
 
 
-// function ut_class_names( $classes ) {
+function ut_class_names( $classes ) {
 
-// 	if ( is_page_template('template-home.php') ) {
-// 		$classes[] = 'home';
-// 	} elseif ( is_singular('post') || is_page_template('template-blog.php') ) {
-// 		$classes[] = 'blog';
-// 	} elseif ( is_singular('product') ) {
-// 		$classes[] = 'curs_page';
-// 	}
+	if ( is_page_template('template-home.php') ) {
+		$classes[] = 'home';
+	} elseif ( is_singular('post') || is_page_template('template-blog.php') ) {
+		$classes[] = 'blog';
+	} elseif ( is_singular('product') ) {
+		$classes[] = 'curs_page';
+	}
 
-// 	return $classes;
-// }
+	return $classes;
+}
 // add_filter( 'body_class','ut_class_names' );
 
 
@@ -245,26 +248,25 @@ function ut_num_decline( $number, $titles, $show_number = true ) {
 
 
 
-// function ut_branding_login() { 
+function ut_branding_login() { 
 
-//     $logo_id = get_field('logo_header', 'options');
-//     $logo_url = wp_get_attachment_url( $logo_id, 'full' );
-    ?>
-        <!-- <style>
+    $logo_id = get_field('logo_header', 'options');
+    $logo_url = wp_get_attachment_url( $logo_id, 'full' );
+    echo '<style>
 			.login h1 a {
-                background-image: url(<?php // echo $logo_url; ?>) !important;
+                background-image: url(' . $logo_url . ') !important;
                 width: 100% !important;
                 background-position: center !important;
                 background-size: contain !important;
             }
-        </style> -->
-    <?php 
-// }
+          </style>';
+    
+}
 // add_action( 'login_enqueue_scripts', 'ut_branding_login' );
 
 
 
-// function ut_custom_login_url( $url ) {
-//     return home_url();
-// }
+function ut_custom_login_url( $url ) {
+    return home_url();
+}
 // add_filter( 'login_headerurl', 'ut_custom_login_url' );

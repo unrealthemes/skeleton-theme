@@ -29,7 +29,7 @@ Text Domain: unreal-themes
 }
 
 /* Response cf7 */
-div.wpcf7-validation-errors {
+.wpcf7 form.invalid .wpcf7-response-output {
     background: #F44336;
     color: #fff;
     padding: 10px;
@@ -41,7 +41,7 @@ div.wpcf7-validation-errors {
     text-align: justify;
 }
 
-div.wpcf7-mail-sent-ok {
+.wpcf7 form.sent .wpcf7-response-output {
     background: #2cb742;
     color: #fff;
     padding: 10px;
@@ -65,7 +65,7 @@ div.wpcf7-spam-blocked {
     text-align: justify;
 }
 
-div.wpcf7-mail-sent-ok::after {
+.wpcf7 form.sent .wpcf7-response-output::after {
     content: '';
     position: absolute;
     left: 20px;
@@ -75,7 +75,7 @@ div.wpcf7-mail-sent-ok::after {
     border-left: 10px solid #2cb742;
 }
 
-div.wpcf7-validation-errors::after {
+.wpcf7 form.invalid .wpcf7-response-output::after {
     content: '';
     position: absolute;
     left: 20px;
@@ -93,5 +93,9 @@ div.wpcf7-spam-blocked::after {
     border: 10px solid transparent;
     border-bottom: 10px solid #ffa500;
     border-left: 10px solid #ffa500;
+}
+
+.wpcf7-spinner {
+    display: none;
 }
 /* END: Response cf7 */

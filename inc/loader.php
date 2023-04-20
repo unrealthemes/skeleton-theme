@@ -15,6 +15,7 @@ class UT_Theme_Helper {
   	private static $_instance = null;
 
   	// public $example;
+	//   public $guneberg_blocks;
 
   	private function __construct() {
 
@@ -48,6 +49,7 @@ class UT_Theme_Helper {
 	function load_classes() {
 
 		// $this->example = UT_Example::get_instance();
+		// $this->guneberg_blocks = UT_Guneberg_Blocks::get_instance();
 	}
 
 	/**
@@ -55,12 +57,8 @@ class UT_Theme_Helper {
 	 */
 	public function register_hooks() {
 
-		// Carbon fields lib
-		add_action( 'after_setup_theme', [ $this, 'carbon_fields_load' ] );
-		add_action( 'carbon_fields_register_fields', [ $this, 'include_register_fields' ] );
-		add_filter( 'carbon_fields_map_field_api_key', [ $this, 'get_gmaps_api_key' ] );
-
 		add_action( 'wp_enqueue_scripts', [ $this, 'load_scripts_n_styles' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'load_admin_scripts_n_styles' ] );
 		add_action( 'after_setup_theme',  [ $this, 'register_menus' ] );
 		add_action( 'after_setup_theme',  [ $this, 'add_theme_support' ] );
 		// add_action( 'widgets_init', [ $this, 'widgets_init' ] );
@@ -128,6 +126,12 @@ class UT_Theme_Helper {
 		// add_filter( 'script_loader_tag', [ $this, 'add_async_defer_attr' ], 10, 3 );
 	}
 
+	function load_admin_scripts_n_styles() {
+		// ========================================= CSS ========================================= //
+		// wp_enqueue_style( 'ut-admin', THEME_URI . '/admin.css' );
+		// ========================================= JS ========================================= //
+	}
+
 	// public function add_async_defer_attr( $tag, $handle, $src ) {
 
 	// 	if ( 'ut-googleapis' === $handle ) {
@@ -140,6 +144,7 @@ class UT_Theme_Helper {
 	public function import() {
 
 		include_once 'helpers.php';
+		// include_once 'class.gutenberg-blocks.php';
 		// include_once 'woo-functions.php';
 		// include_once 'disable-editor.php';
 		// include_once 'pagination.php';
