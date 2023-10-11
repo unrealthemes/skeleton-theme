@@ -1,16 +1,7 @@
 <?php
+namespace App\Classes;
 
-class UT_Guneberg_Blocks {
-
-    private static $_instance = null; 
-
-    static public function get_instance() {
-
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+class Guneberg_Blocks {
 
     public function __construct() {
 

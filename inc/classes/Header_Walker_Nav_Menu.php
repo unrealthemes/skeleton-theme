@@ -1,6 +1,7 @@
 <?php 
+namespace App\Classes;
 
-class Ut_Walker_Nav_Menu extends Walker_Nav_Menu {
+class Header_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 	/**
 	 * Starts the list before the elements are added.
