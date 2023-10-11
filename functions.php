@@ -9,7 +9,7 @@
 
 define('THEME_URI', get_template_directory_uri());
 
-// require_once('lib/vendor/autoload.php');
+// require_once('vendor/autoload.php'); // after composer update
 include_once 'inc/loader.php'; // main helper for theme
 
 ut_help()->init();
